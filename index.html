@@ -1,23 +1,361 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <base target="_top">
-    <?!= HtmlService.createHtmlOutputFromFile('style').getContent() ?>
-</head>
-<body>
-    <div class="main-container">
-        <header>
-            <h1>مستشفى بدية</h1>
-            <p>نظام تسجيل الطلبة المستجدين 2027/2028</p>
-        </header>
-        
-        <div id="app">
-            <!-- سيتم حقن النموذج هنا عبر JS -->
-            <div class="loader"></div>
-        </div>
-    </div>
-    <?!= HtmlService.createHtmlOutputFromFile('javascript').getContent() ?>
-</body>
-</html>
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<base target="_top">
+
+<title>حجز الفحص الطبي - مستشفى بدية</title>
+
+<?!= include('style'); ?>
+
+</head>
+
+<body>
+
+<div class="loader" id="loader">
+
+جاري حفظ الحجز...
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="header">
+
+<h1>
+
+🏥 مستشفى بدية
+
+</h1>
+
+<p>
+
+حجز موعد الفحص الطبي للطلبة المستجدين
+<br>
+العام الدراسي 2027 / 2028
+
+</p>
+
+</div>
+
+<div class="info-box">
+
+<div class="info">
+
+<h3>
+
+فترة الحجز
+
+</h3>
+
+<span>
+
+5 - 23 يوليو
+
+</span>
+
+</div>
+
+<div class="info">
+
+<h3>
+
+عدد المقاعد
+
+</h3>
+
+<span>
+
+25
+
+</span>
+
+</div>
+
+<div class="info">
+
+<h3>
+
+أيام العمل
+
+</h3>
+
+<span>
+
+الأحد - الخميس
+
+</span>
+
+</div>
+
+</div>
+
+<div class="form">
+
+<form id="appointmentForm">
+
+<div class="row">
+
+<div class="col">
+
+<label>
+
+اسم الطفل الثلاثي والقبيلة
+
+</label>
+
+<input
+
+type="text"
+
+id="childName"
+
+required>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+
+<label>
+
+تاريخ الميلاد
+
+</label>
+
+<input
+
+type="date"
+
+id="birthDate"
+
+required
+
+onchange="calculateAge()">
+
+</div>
+
+<div class="col">
+
+<label>
+
+العمر
+
+</label>
+
+<input
+
+type="text"
+
+id="childAge"
+
+class="readonly"
+
+readonly>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+
+<label>
+
+رقم هاتف ولي الأمر
+
+</label>
+
+<input
+
+type="tel"
+
+id="guardianPhone"
+
+maxlength="8"
+
+required>
+
+</div>
+
+<div class="col">
+
+<label>
+
+المنطقة / القرية
+
+</label>
+
+<input
+
+type="text"
+
+id="region"
+
+required>
+
+</div>
+
+</div>
+
+<input
+
+type="hidden"
+
+id="appointmentDate">
+
+<div class="calendar">
+
+<div class="calendar-title">
+
+📅 اختر موعد الفحص
+
+</div>
+
+<div class="days">
+
+<div class="day-name">الأحد</div>
+
+<div class="day-name">الإثنين</div>
+
+<div class="day-name">الثلاثاء</div>
+
+<div class="day-name">الأربعاء</div>
+
+<div class="day-name">الخميس</div>
+
+<div class="day-name">الجمعة</div>
+
+<div class="day-name">السبت</div>
+
+<div id="calendarDays"
+
+style="display:contents;">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="legend">
+
+<div>
+
+<span
+
+class="box"
+
+style="background:#ecfff4">
+
+</span>
+
+متاح
+
+</div>
+
+<div>
+
+<span
+
+class="box"
+
+style="background:#fff5e7">
+
+</span>
+
+متبقي أقل من 10
+
+</div>
+
+<div>
+
+<span
+
+class="box"
+
+style="background:#fdecea">
+
+</span>
+
+مكتمل
+
+</div>
+
+<div>
+
+<span
+
+class="box"
+
+style="background:#faf7e7">
+
+</span>
+
+إجازة
+
+</div>
+
+</div>
+
+<div
+
+id="message"
+
+class="message">
+
+</div>
+
+<button
+
+class="btn"
+
+id="submitBtn"
+
+disabled>
+
+تأكيد الحجز
+
+</button>
+
+</form>
+        <div style="margin-top:25px;text-align:center;color:#666;font-size:13px">
+
+            <hr style="margin-bottom:15px;border:none;border-top:1px solid #e5e5e5;">
+
+            <p>
+
+                مستشفى بدية © 2026
+
+            </p>
+
+            <p>
+
+                نظام حجز مواعيد الفحص الطبي للطلبة المستجدين
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<?!= include('javascript'); ?>
+
+</body>
+
+</html>
