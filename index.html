@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <base target="_top">
+    <?!= HtmlService.createHtmlOutputFromFile('style').getContent() ?>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>مستشفى بدية</h1>
+            <p>نظام تسجيل الطلبة المستجدين 2027/2028</p>
+        </header>
+        
+        <div id="app">
+            <!-- سيتم حقن النموذج هنا عبر JS -->
+            <div class="loader"></div>
+        </div>
+    </div>
+    <?!= HtmlService.createHtmlOutputFromFile('javascript').getContent() ?>
+</body>
+</html>
+
